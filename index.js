@@ -1,11 +1,11 @@
 // Stwórz funkcję paginateArray
 
 const paginateArray = (dataEntries, settings) => {
-    if (dataEntries.length == 0) throw new Error("Array has no elements")
-    if (!settings.entriesOnPage || !settings.actualPageIdx) throw new Error("All arguments are not entered");
+    if (!dataEntries || !settings.entriesOnPage || !settings.actualPageIdx) throw new Error("Not all arguments are entered");
+    if (!Array.isArray(dataEntries) || !Number.isInteger(settings.entriesOnPage) || !Number.isInteger(settings.actualPageIdx)) throw new Error("Arguments have wrong types");
+    if (dataEntries.length === 0) throw new Error("Array has no elements");
     const start = settings.entriesOnPage * settings.actualPageIdx;
     const end = start + settings.entriesOnPage;
-    if (dataEntries.slice(start,end).length != settings.entriesOnPage) throw new Error("There aren't enought elements in array");
     const entriesOnSelectedPage = dataEntries.slice(start,end);
     return entriesOnSelectedPage;
 }
