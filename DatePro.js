@@ -16,6 +16,8 @@ class DatePro{
     }
 
     dateMatch(letter, date, format) {
+        if (!date || typeof date !== 'string') throw new Error('There is no date provided');
+        if (!format || typeof format !== 'string') throw new Error('There is no date format provided');
         const dateArray = date.split(this.seperator);
         const formatArray = format.split(this.seperator);
         for(let i = 0; i < dateArray.length; i++) {
@@ -35,6 +37,7 @@ class DatePro{
                     return this.day;
                 case "MM":
                     return this.month;
+                case "YY":
                 case "YYYY":
                     return this.year;
                 default:
